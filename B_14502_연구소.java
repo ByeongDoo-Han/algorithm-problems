@@ -3,7 +3,7 @@ package com.example.testproject;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class lab {
+public class B_14502_연구소 {
     /*
         7 7
         2 0 0 0 1 1 0
