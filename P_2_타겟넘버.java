@@ -6,6 +6,7 @@ import java.util.Queue;
 public class P_2_타겟넘버 {
 
     static int[] numbers = new int[]{1,1,1,1,1};
+//    static int[] numbers = new int[]{4,1,2,1};
     static int target = 3;
     static int answer = 0;
     static Queue<Integer> queue = new LinkedList<>();
@@ -31,12 +32,13 @@ public class P_2_타겟넘버 {
     }
 
     public static int bfssolution(int[] numbers, int target){
-
+        int n =1;
         queue.add(0);
         for (int i = 0; i < numbers.length; i++) {
-            bfs(queue, i, numbers);
+            bfs(n, numbers[i]);
 
             queue= nqueue;
+            n*=2;
         }
         for(int i : queue){
             if(i==target){
@@ -46,12 +48,12 @@ public class P_2_타겟넘버 {
         return answer;
     }
 
-    public static void bfs(Queue<Integer> queue, int n ,int[] numbers){
-        for (int i = 0; i < queue.size()-1; i++) {
+    public static void bfs(int n, int num){
+        for (int i = 0; i < n; i++) {
             Integer temp;
             temp = queue.poll();
-            nqueue.add(temp+numbers[i]);
-            nqueue.add(temp-numbers[i]);
+            nqueue.add(temp+num);
+            nqueue.add(temp-num);
         }
 
     }
