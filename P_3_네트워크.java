@@ -43,7 +43,6 @@ public class P_3_네트워크 {
                 answer++;
             }
         }
-        System.out.println(answer);
         return answer;
 
     }
@@ -100,7 +99,6 @@ public class P_3_네트워크 {
 
 
     public static void main(String[] args){
-        boolean[] k = new boolean[3];
-        System.out.println(Arrays.toString(k));
+        System.out.println(dfsSolution(n, computers));
     }
 }
