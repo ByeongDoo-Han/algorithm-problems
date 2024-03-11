@@ -33,12 +33,12 @@ public class P_3_네트워크 {
     public static int dfsSolution(int n, int[][] computers){
         boolean[] visited = new boolean[n];
         int answer = 0;
-        //세로줄 갯수만큼 돌면서
-        for (int i = 0; i < n; i++) {
+        //노드 갯수만큼 돌면서
+        for (int i = 0; i < computers.length; i++) {
             //방문하지 않은 노드라면
             if(!visited[i]){
                 //dfs돌린다
-                dfs(n,computers,visited,i);
+                dfs(computers,visited,i);
                 //dfs 다돌면 answer++
                 answer++;
             }
@@ -47,15 +47,15 @@ public class P_3_네트워크 {
 
     }
 
-    public static void dfs(int n, int[][]computers, boolean[] visited, int num){
+    public static void dfs(int[][]computers, boolean[] visited, int num){
         //방문한거 체크
         visited[num]=true;
         //가로 갯수만큼
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < computers.length; i++) {
             //1인 노드이면서 방문하지 않은 노드이면서 x,y 위치가 같은 노드라면
             if(computers[i][num]==1&&!visited[i]&&i!=num){
                 //다음 노드로 진행
-                dfs(n,computers,visited,i);
+                dfs(computers,visited,i);
             }
         }
     }
