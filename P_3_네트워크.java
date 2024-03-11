@@ -33,7 +33,7 @@ public class P_3_네트워크 {
     public static int dfsSolution(int n, int[][] computers){
         boolean[] visited = new boolean[n];
         int answer = 0;
-        //가로줄 갯수만큼 돌면서
+        //세로줄 갯수만큼 돌면서
         for (int i = 0; i < n; i++) {
             //방문하지 않은 노드라면
             if(!visited[i]){
