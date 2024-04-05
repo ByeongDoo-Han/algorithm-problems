@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class P_BFS_3_단어변환 {
+public class P_3_BFS_단어변환 {
     static String begin = "hit";
     static String target = "cog";
     static String[] words = new String[]{"hot", "dot", "dog", "lot", "log", "cog"};
