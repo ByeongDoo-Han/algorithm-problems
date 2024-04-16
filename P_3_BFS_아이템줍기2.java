@@ -26,27 +26,45 @@ public class P_3_BFS_아이템줍기2 {
     static int characterY = 3;
     static int itemX = 7;
     static int itemY = 8;
-    static Integer len = 21;
-    static int[][] map = new int[len][len];
-    static boolean[][] visited = new boolean[len][len];
-    static Queue<Integer[]> loc = new LinkedList<>();
-    static int[][] score = new int[len][len];
-    static int staticY = len-itemY*2-1;
-    static int staticX = itemX*2;
+
+    public static int getMin(int[][] rectangle){
+        int result =0;
+        for (int[] i:rectangle) {
+            for (int j:i) {
+                result = Math.min(result,j);
+            }
+        }
+        return result;
+    }
+    public static int getMax(int[][] rectangle){
+        int result =0;
+        for (int[] i:rectangle) {
+            for (int j:i) {
+                result = Math.max(result,j);
+            }
+        }
+        return result;
+    }
     public static int[][] solution(int[][] rectangle, int characterX,int characterY,int itemX,int itemY){
+        int len = getMax(rectangle)*2+2;
+        int[][] map = new int[len][len];
+        boolean[][] visited = new boolean[len][len];
+        Queue<Integer[]> loc = new LinkedList<>();
+        int[][] score = new int[len][len];
         int answer = 0;
-        draw(rectangle);
+        draw(rectangle, map, len);
         int[] dx = new int[]{1,0,-1,0};
         int[] dy = new int[]{0,1,0,-1};
         Integer[] target = new Integer[]{len-itemY*2-1,itemX*2};
         loc.add(new Integer[]{len-characterY*2-1, characterX*2});
         score[len-characterY*2-1][characterX*2]=0;
-        bfs(map,target, loc);
-        answer=score[staticY][staticX];
+        bfs(map,target, loc,visited,score,len);
+        answer=score[len-itemY*2-1][itemX*2];
 //        return new int[]{answer,len-itemY*2-2,(itemX)*2-2};
         return score;
     }
-    public static void bfs(int[][] map, Integer[] target, Queue<Integer[]>loc){
+    public static void bfs(int[][] map, Integer[] target, Queue<Integer[]>loc,
+                           boolean[][] visited, int[][] score, int len){
         while(!loc.isEmpty()){
             Integer[] temp = loc.poll();
             int y=temp[0];
@@ -71,7 +89,7 @@ public class P_3_BFS_아이템줍기2 {
             }
         }
     }
-    public static int[][] draw(int[][] rectangle){
+    public static int[][] draw(int[][] rectangle,int[][] map, int len){
 //        int[] target = rectangle[1];
         for(int[] target:rectangle){
             for (int i = len-target[3]*2-1; i < len-target[1]*2; i++) {
@@ -93,24 +111,8 @@ public class P_3_BFS_아이템줍기2 {
         return map;
     }
     public static void main(String[] args) {
-//        for(int[] i:draw(rectangle)){
-//            System.out.println(Arrays.toString(i));
-//        }
         for(int[] i:solution(rectangle, characterX, characterY, itemX, itemY)){
             System.out.println(Arrays.toString(i));
         }
-//        for(int[] i:solution(rectangle2, characterX2, characterY2, itemX2, itemY2)){
-//            System.out.println(Arrays.toString(i));
-//        }
-        System.out.println(staticY);
-        System.out.println(staticX);
-        System.out.println(score[staticY][staticX]);
-        System.out.println((score[staticY][staticX])/2);
-//        for(int i:solution(rectangle, characterX, characterY, itemX, itemY)){
-//            System.out.println(i);
-//        }
-//        System.out.println(Arrays.toString(solution(rectangle, characterX, characterY, itemX, itemY)));
-//        System.out.println(solution(rectangle2, characterX2, characterY2, itemX2, itemY2));
-//        System.out.println(solution(rectangle, characterX, characterY, itemX, itemY));
     }
 }
